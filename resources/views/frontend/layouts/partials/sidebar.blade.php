@@ -6,7 +6,7 @@
       <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-info-circle"></i>
       </div>
-      <div class="sidebar-brand-text mx-3">BS-CONTACT<sup></sup></div>
+      <div class="sidebar-brand-text mx-3">BS-CONNECT<sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -18,21 +18,18 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
-    {{-- @php
-        $user = DB::table('role_user')->where('user_id',Auth::user()->id)->where('role_id',1)->count();
-    @endphp
-    @if ($user !== 0) --}}
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('contact.index')}}">
-        <i class="fas fa-fw fa-align-center"></i>
-        <span>Contact</span></a>
-    </li>
+        <a class="nav-link" href="{{ route('contact.index')}}">
+          <i class="fas fa-fw fa-align-center"></i>
+          <span>Contact</span></a>
+      </li>
+    @if (Auth::user()->status == 0) 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('user.create')}}">
           <i class="fas fa-fw fa-align-center"></i>
           <span>New User</span></a>
       </li>
-    {{-- @endif --}}
+   @endif 
 
 
 

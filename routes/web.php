@@ -11,12 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-        return view('frontend.index');
-   })->name('index');
+Route::group(['middleware' => ['auth']], function() {
+        Route::get('/', function () {
+                return view('frontend.index');
+           })->name('index');
 
-Route::resource('/contact','ContactController');
+        Route::resource('/contact','ContactController');
+        Route::resource('/user','UserController');
+});
 
 
-Route::resource('/user','UserController');
+
 Route::get('/password-update-form/{id}', 'UserController@showUpdatePasswordForm')->name('showPasswordForm');
+Route::get('login','Auth\LoginController@showLoginForm')->name('login');
+Route::post('logout','Auth\LoginController@logout')->name('logout');
+Route::post('login','Auth\LoginController@login');
