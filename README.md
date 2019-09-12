@@ -22,6 +22,10 @@ This application for find a general information of employees a organization such
 
 > composer install
 
+### `Migrate All Database`
+
+> php artisan migrate
+
 ### `Run your server Or write your virtual host name in browswer`
 
 > php artisan serve
