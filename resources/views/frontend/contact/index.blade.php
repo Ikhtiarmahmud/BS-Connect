@@ -16,6 +16,16 @@
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-12">
                <a href="{{route('contact.create')}}" class="btn btn-primary mb-3">Create New</a>
+               <div class="card mb-4 bg-light">
+                <div class="card-body">
+                <form action="{{ route('contact.import')}}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <input type="file" name="file" class="mb-3">
+                      <br>
+                      <button class="btn btn-success">Import User Data</button>
+                  </form>
+              </div>
+               </div>
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

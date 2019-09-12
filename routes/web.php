@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::resource('/contact','ContactController');
         Route::resource('/user','UserController');
+        Route::post('import-contact-to-excel', 'ExcelController@importContact')->name('contact.import');
 });
 
 
