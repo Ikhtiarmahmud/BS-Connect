@@ -5,9 +5,12 @@ namespace App\Imports;
 use App\Contact;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 
-class ContactsImport implements ToModel, WithStartRow
+
+
+class ContactsImport implements ToModel, WithStartRow, WithHeadingRow
 {
     /**
      * @param array $row
@@ -23,10 +26,10 @@ class ContactsImport implements ToModel, WithStartRow
     public function model(array $row)
     {
         return new Contact([
-            'name'        => $row[0],
-            'designation' => $row[1],
-            'email' => $row[2],
-            'phone' => $row[3],
+            'name'        => $row['name'],
+            'designation' => $row['designation'],
+            'email' => $row['email'],
+            'phone' => $row['phone'],
         ]);
     }
 }

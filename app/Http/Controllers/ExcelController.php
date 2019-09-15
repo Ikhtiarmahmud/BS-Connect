@@ -7,20 +7,20 @@ use Illuminate\Support\Arr;
 use App\Imports\ContactsImport;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class ExcelController extends Controller
 {
     public function importContact()
     {
-        Excel::import(new ContactsImport, request()->file('file'));
-
-        //  return collect(head($data))
-        //         ->each(function ($row, $key) {
-        //          DB::table('contacts')
-        //         ->where('email', $row[3])
-        //         ->update(Arr::except($row, [3]));
-        // });
-
+        $data = Excel::toArray(new ContactsImport, request()->file('file'));
+        collect(head($data))
+            ->each(function ($row) {
+                DB::table('contacts')
+                    ->where('phone', $row['phone'])
+                    ->updateOrInsert(Arr::except($row, ['id']));
+            });
+        Session::flash('message', "Imported Successfully!");
         return back();
     }
 }

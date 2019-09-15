@@ -16,12 +16,14 @@
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-12">
                <a href="{{route('contact.create')}}" class="btn btn-primary mb-3">Create New</a>
+               @if (Session::has('message'))
+                  <div class="alert alert-info">{{ Session::get('message') }}</div>
+               @endif
                <div class="card mb-4 bg-light">
                 <div class="card-body">
                 <form action="{{ route('contact.import')}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <input type="file" name="file" class="mb-3">
-                      <br>
                       <button class="btn btn-success">Import User Data</button>
                   </form>
               </div>
@@ -79,7 +81,5 @@
     <script src="{{ asset('ui/frontend/js/demo/datatables-demo.js')}}"></script>
     <script type="text/javascript">
       var contactRoute = "{{ route('contact.index')}}";
-   </script>
-
-    
+   </script>    
 @endpush
