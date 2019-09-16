@@ -12,10 +12,8 @@
 */
 
 Route::group(['middleware' => ['auth']], function() {
-        Route::get('/', function () {
-                return view('frontend.index');
-           })->name('index');
-
+        
+        Route::get('/','UserController@dashboard')->name('dashboard');
         Route::resource('/contact','ContactController');
         Route::resource('/user','UserController');
         Route::post('import-contact-to-excel', 'ExcelController@importContact')->name('contact.import');

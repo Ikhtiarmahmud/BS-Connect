@@ -19,6 +19,16 @@
                @if (Session::has('message'))
                   <div class="alert alert-info">{{ Session::get('message') }}</div>
                @endif
+               @if(count($errors) > 0)
+                  <div class="alert alert-danger">
+                      <ul>
+                        Upload Validation Error!<br><br>
+                        @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                  </div>
+               @endif
                <div class="card mb-4 bg-light">
                 <div class="card-body">
                 <form action="{{ route('contact.import')}}" method="POST" enctype="multipart/form-data">
