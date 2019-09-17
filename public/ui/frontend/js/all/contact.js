@@ -14,17 +14,26 @@ function create() {
         phone: phone,
     }
 
-    $.ajax({
-        url: API_BASE_URL + '/api/contact/create',
-        type: "post",
-        data: data,
-        success: function (response) {
-            if (response) {
-                alert('New Contact Info Created Successfully!');
-                window.location.href = contactRoute;
+    if (name == "" || designation == "" || email == "" || phone == "") {
+        let error = $(".error");
+        error.html('*Field is Required');
+        error.css({ "color": "red", "font-size": "15px" });
+    }
+    else {
+        $.ajax({
+            url: API_BASE_URL + '/api/contact/create',
+            type: "post",
+            data: data,
+            success: function (response) {
+                if (response) {
+                    let success = $("#success");
+                    success.html('Contact Created Successfully');
+                    success.addClass('alert alert-success');
+                    window.location.href = contactRoute;
+                }
             }
-        }
-    })
+        })
+    }
 }
 
 
@@ -47,7 +56,7 @@ $(document).on('click', '#update', (e) => {
 })
 
 function update() {
-    let id = $("#contact_id").val();
+    let id   = $("#contact_id").val();
     let name = $("#name").val();
     let designation = $("#designation").val();
     let email = $("#email").val();

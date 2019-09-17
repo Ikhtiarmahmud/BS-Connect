@@ -4,21 +4,30 @@ function create() {
 
     let email = $("#email").val();
 
+    
     let data = {
         email: email,
     }
-
-    $.ajax({
-        url: API_BASE_URL + '/api/user/create',
-        type: "post",
-        data: data,
-        success: function (response) {
-            if (response) {
-                alert('User Created Successfully!');
-                window.location.href = userRoute;
+    if(email == ""){
+        let error = $("#error");
+        error.html('*Field is Required');
+        error.css('color','red');
+    }
+    else{
+        $.ajax({
+            url: API_BASE_URL + '/api/user/create',
+            type: "post",
+            data: data,
+            success: function (response) {
+                if (response) {
+                    let success = $("#success");
+                    success.html('User Created Successfully');
+                    success.addClass('alert alert-success');
+                }
             }
-        }
-    })
+        })  
+    }
+    
 }
 
 

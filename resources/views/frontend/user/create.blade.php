@@ -9,10 +9,11 @@
   <div class="row">
 
     <div class="col-xl-12 col-lg-12">
+      <div id="success"></div>
       <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Create Project</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Create User</h6>
         </div>
         <!-- Card Body -->
         <div class="card-body">
@@ -22,6 +23,7 @@
               <div class="col-md-6 mb-3 form-group">
                 <label for="email" class="font-weight-bold">Email</label>
                 <input type="email" class="form-control" name="email" placeholder="Enter Email" id='email'>
+                <p id="error"></p>
               </div>
             </div>
             <div class="row">
@@ -41,9 +43,4 @@
 @push('script')
 <script src="{{ asset('ui/frontend/js/all/user.js') }}"></script>
 <script src="{{ asset('ui/frontend/js/all/config.js') }}"></script>
-
-<script type="text/javascript">
-
-  var userRoute = "{{ route('user.create')}}";
-</script>
 @endpush
